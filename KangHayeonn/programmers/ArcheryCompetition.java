@@ -32,7 +32,7 @@ class Solution {
 			return;
 		}
 		for(int i=0; i<11; i++) {
-			if(lionArr[i] > info[i]) continue;
+			if(lionArr[i] > info[i]) break;
 			lionArr[i]+=1;
 			dfs(count+1, n, info);
 			lionArr[i]-=1;
