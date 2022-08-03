@@ -29,39 +29,29 @@ class Solution {
 			}
 		});
 		
-		int start, end, cnt;
-		String head, number, tail="", str;
-		
+		boolean chk;
+		String head, number, tail, str;
+
 		for(int i=0; i<files.length; i++) {
+            		String[] strArr = files[i].split("[0-9]");
 			str = files[i];
-			start = 0; // Number 시작점
-			end = 0;   // Tail 시작점
-			cnt = 0;
-			
-			for(int j=0; j<str.length(); j++) {
+            		head = strArr[0];
+            		number = "";
+            		tail="";
+           			chk = false;
+            
+			for(int j=head.length(); j<str.length(); j++) {
 				char c = str.charAt(j);
-				System.out.println(c);
-				
-				if(cnt > 5 && end == 0) end = j;
-				if(!Character.isDigit(c) && start != 0 && end == 0) {
-					System.out.println("들어오나 ? " + c);
-					end = j;
-				}
-				if(Character.isDigit(c)) {
-					if(start == 0) start = j;
-					cnt += 1;
-				}
+                
+                			if(!Character.isDigit(c)) chk = true;
+                
+                			if(Character.isDigit(c) && number.length() < 5 && !chk) {
+                    				number += c;
+                			} else {
+                    				tail += c;
+                			}
+                
 			}
-			head = str.substring(0, start);
-			
-			if(end == 0) {
-				number = str.substring(start);
-			} else {
-				number = str.substring(start, end);
-				tail = str.substring(end);
-			}
-			
-			System.out.println(head + " " + number + " " + tail);
 			pq.offer(new Type(head, number, tail, i));
 		}
 
@@ -75,4 +65,3 @@ class Solution {
 		}
 		return answer;
 	}
-}
