@@ -67,7 +67,7 @@ public class Main {
 			x *= 2;
 			t += 1;
 		}
-		
+	
 		return t-1;
 	}
 	public static void init(int curr, int d, int parent) {
